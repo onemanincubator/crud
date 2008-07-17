@@ -1,0 +1,3 @@
+Model:
+    Full::Path::To::NameController:
+        action: [array_of, field_names, for_which, input_fields, will_be_generated]

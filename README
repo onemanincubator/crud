@@ -1,0 +1,26 @@
+Crud
+====
+Email address: peter "at" onemanincubator.com
+
+Description
+===========
+I have multiple sites on multiple servers, and one development machine.
+I wanted a scaffolding replacement to use as a kind of default mode
+for controller and view crud functions. Useful for admin purposes.
+That's what this code does.
+
+Go Away
+=======
+Just kidding. But not really. Point is, this code sucks. Breaks pretty 
+much every unwritten rule of proper Rails coding. I won't bore you 
+with the details.
+
+Don't bother looking in the code. As I said, it sucks.
+
+So why post it on github? Because I couldn't figure out how to manage
+this code using git with the shared codebase sitting on my local 
+machine while still using capistrano to deploy. github is a no-brainer.
+
+Someday, when this plugin code becomes beautiful, I'll write up a
+proper README. But for now, just move along. :)
+ 

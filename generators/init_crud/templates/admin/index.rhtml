@@ -1,0 +1,4 @@
+<% tables = ActiveRecord::Base.connection.tables - ['schema_info','sessions'] %>
+<% tables.each do |table| %>
+	<%= link_to table.camelize, :action => 'list', :table => table %><br><br>
+<% end %>

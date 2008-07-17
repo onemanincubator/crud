@@ -1,0 +1,21 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<%= render :partial => 'layouts/header' %>
+
+<body>
+	<div id="baseDiv">
+		<!-- header -->
+		<%= render :partial => 'layouts/masthead' %>
+
+		<!-- error message -->
+		<% unless flash[:notice].blank? %><div class="errorBox"><%= flash[:notice] %></div><% end %>
+
+		<!-- main content -->
+		<%= yield  %>
+
+		<!-- footer -->
+		<%= render :partial => 'layouts/footer' %>
+	</div> <!-- end baseDiv -->
+</body>
+</html>
