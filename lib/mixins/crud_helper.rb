@@ -53,7 +53,7 @@ module Crud
         else # ajax link
           params = self.params.to_hash.symbolize_keys
           th_html = link_to(attribute_name.humanize, 
-                          params.rec_merge!(:order => attribute_name))
+                          params.merge!(:order => attribute_name))
         end
         row_html << content_tag(:th, th_html)
       end
