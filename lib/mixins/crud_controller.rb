@@ -312,11 +312,10 @@ module Crud
       		table = @table || self.table || request.path.split('/')[1]
       	end
       	table = table.tableize.classify 
-        model = table.constantize # is this a class?
-        raise NameError unless model.respond_to?('connection') and
-        												!model.abstract_class? # tied to db?
-      	table
-      rescue NameError
+        model = table.constantize # a valid class? 
+        model.connected? and !model.abstract_class? # tied to db?
+        table
+      rescue
         flash[:notice] = "crud can't process '#{table}'; use the :table param"
         redirect_to_index and return false
       end     
