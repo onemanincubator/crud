@@ -22,7 +22,9 @@ module Crud
     #########################################################################################
     
     def tables_list
-      ActiveRecord::Base.connection.tables - ['schema_info','sessions']
+      ActiveRecord::Base.active_connections.values.map {|connection| 
+      	connection.tables}.flatten - 
+      	%w(schema_migrations schema_info sessions)
     end
     
     def app_tables_list
