@@ -37,10 +37,10 @@ module Crud
     def list_items_tag(options = {})
       #initialize
       columns_hash = 
-        get_columns(@table.classify, controller.controller_class_name, 'list')
+        get_columns(@table, controller.controller_class_name, 'list')
       columns = columns_hash['_attributes'] + columns_hash['_hm_attributes']
       has_many_columns = columns_hash['_hm_attributes']
-      @db_columns_hash ||= @table.classify.constantize.columns_hash
+      @db_columns_hash ||= @table.constantize.columns_hash
       
       html = ""
             
