@@ -305,19 +305,19 @@ module Crud
       
       # return the table on which crud methods are operating
       def which_table
-      	# use global variable if app already set it, then param, then
-      	# cattr, then check the URL (i.e. maybe RESTful)
-      	table = @table || params[:table]
-	     	@no_param = table.blank? # so input_form will not use param :table
-      	table = table || self.table || request.path.split('/')[1]
-      	table = table.tableize.classify
-        table.constantize rescue invalid = true
-      	return table unless invalid
-      	cntr = controller_name.classify.constantize # try controller_name last
-      	cntr.connection rescue raise NameError
-        return controller_name.classify
+      	table = params[:table] # try param first
+      	unless table
+      		@no_param = true
+      		# then try instance variable, class variable, and url
+      		table = @table || self.table || request.path.split('/')[1]
+      	end
+      	table = table.tableize.classify 
+        model = table.constantize # is this a class?
+        raise NameError unless model.respond_to?('connection') and
+        												!model.abstract_class? # tied to db?
+      	table
       rescue NameError
-        flash[:notice] = "crud can't identify the table; use the :table param"
+        flash[:notice] = "crud can't process '#{table}'; use the :table param"
         redirect_to_index and return false
       end     
       
